@@ -1,12 +1,14 @@
 <?php
 /*
- * This will eventually become a full class for managing ini files from
+ * Class for managing ini files from
  * PHP. Currently the PHP language only supports reading ini files, this
  * class will allow you to read and write ini files in a transperant manner,
  * completely abstracted away through the use of an object
+ * 
+ * @author Ben Lobaugh <ben@lobaugh.net>
+ * @url http://ben.lobaugh.net
+ * @license Free to use and modify as you choose. Please give credits.
  */
-
-
 class Ini {
 
         /**
@@ -16,12 +18,14 @@ class Ini {
          private $mIni;
          
          
-	// Reads in an ini file and places the contents in 
-	// a class level assoc array
+	/**
+         * Opens the ini file and reads it into an associative array for 
+         * ease of use
+         * 
+         * @param String $file 
+         */
 	public function open($file){
             $this->mIni = parse_ini_file($file, true);
-            
-            print_r($this->mIni);
         }
 
 	/**
@@ -61,9 +65,14 @@ class Ini {
             return null;
         }
 
-	// Writes the values to the ini file
+	/**
+         *
+         * @param String $file 
+         */
 	public function save($file){
             file_put_contents($file, $this->buildIniFileString());
+            if(file_exists($file)) return true;
+            return false;
         }
         
         /**
@@ -89,7 +98,8 @@ class Ini {
          * Prints the contents of the ini file
          */
 	function __toString(){
-            print_r($this->mIni);
+            return print_r($this->mIni, true);
         }
 
 } // end class
+
