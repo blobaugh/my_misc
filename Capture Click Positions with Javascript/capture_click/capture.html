@@ -1,0 +1,34 @@
+<html>
+<head>
+	<title>Capture Click Proof</title>
+	
+	<link rel="stylesheet" href="templates/site.css" />
+	
+<script type="text/javascript" src="jquery-1.4.2.min.js" /></script>
+
+<script type="text/javascript" >
+	
+	$(document).ready(function(){
+		$(document).click(function(i){
+			$('#click').text("Clicked: (" + i.pageX + ", " + i.pageY + ")" );
+			/*$.ajax({
+			   type: "POST",
+			   url: "http://ben.lobaugh.net/del/capture_click/save_click.php",
+			   data: "x="+i.pageX+"&y="+i.pageY,
+			   success: function(msg){
+			     $('#status').text( "Data Saved: " + msg );
+			   }
+			 });*/
+		})
+	});
+	
+</script>
+</head>
+<body>
+	<h2>Proof of concept - Capture Click</h2>
+	<p>Purpose: Capture and store click coords in a db.</p>
+	<p>Reasoning: Build a better navflow.</p>
+	<div id="click"></div>
+	<div id="status"></div>
+</body>
+</html>
